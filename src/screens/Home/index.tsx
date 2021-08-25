@@ -40,11 +40,20 @@ export function Home() {
   }
 
   function handleFilterLoginData() {
-    // Filter results inside data, save with setSearchListData
+    const response = data.filter((item) => {
+      if (item.service_name.includes(searchText)) {
+        return item;
+      }
+    });
 
+    setSearchListData(response);
   }
 
   function handleChangeInputText(text: string) {
+    if (!text) {
+      setSearchListData(data);
+    }
+    
     setSearchText(text);
   }
 
